@@ -25,12 +25,14 @@ resource "aws_apigatewayv2_api" "creat_api" {
 }
 
 resource "aws_apigatewayv2_route" "api_route" {
+  depends_on = [ aws_apigatewayv2_api.creat_api ]
   api_id    = aws_apigatewayv2_api.creat_api.id
   route_key = "ANY /{proxy+}"
 }
 
 
 resource "aws_apigatewayv2_stage" "example" {
+  depends_on = [ aws_apigatewayv2_route.api_route ]
   api_id = aws_apigatewayv2_api.creat_api.id
   name   = "$default"
   auto_deploy = true
@@ -38,6 +40,7 @@ resource "aws_apigatewayv2_stage" "example" {
 
 
 resource "aws_apigatewayv2_domain_name" "example" {
+  depends_on = [ aws_apigatewayv2_api.creat_api ]
   for_each = var.domain_name
   domain_name = each.value
 
