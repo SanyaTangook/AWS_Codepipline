@@ -7,7 +7,7 @@ resource "aws_apigatewayv2_api" "example" {
   protocol_type                = "HTTP"
   api_key_selection_expression = data.aws_apigatewayv2_api.data_api.api_key_selection_expression
   cors_configuration {
-    allow_credentials = true
+    allow_credentials = data.aws_apigatewayv2_api.data_api.cors_configuration[0].allow_credentials
     allow_headers = ["*",
       "accept",
       "authorization",
