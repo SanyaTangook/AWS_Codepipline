@@ -3,7 +3,7 @@ data "aws_apigatewayv2_api" "data_api" {
 }
 
 resource "aws_apigatewayv2_api" "example" {
-  name                         = ""
+  name                         = var.name_api
   protocol_type                = "HTTP"
   api_key_selection_expression = data.aws_apigatewayv2_api.data_api.api_key_selection_expression
   cors_configuration {
@@ -26,20 +26,6 @@ resource "aws_apigatewayv2_api" "example" {
       "POST",
       "PUT",
     ]
-
-    allow_origins = [
-      "http://localhost:4200",
-      "http://webv3-dev-poc.360truck.co",
-      "http://webv3-dev-poc.360truck.co/",
-      "https://adminv3-dev-poc.360truck.co",
-      "https://adminv3-dev.360truck.co",
-      "https://adminv3-dev.360truck.co/",
-      "https://webv3-dev-poc.360truck.co",
-      "https://webv3-dev-poc.360truck.co/",
-      "https://webv3-dev.360truck.co",
-      "https://webv3-dev.360truck.co/",
-    ]
-
     expose_headers = [ "*" ]
     max_age = 300
   }

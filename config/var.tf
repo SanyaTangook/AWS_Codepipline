@@ -3,7 +3,7 @@ variable "api_id" {
     default = ""
 }
 
-variable "api_domain" {
+variable "name_api" {
     type = string
     default = ""
 }
