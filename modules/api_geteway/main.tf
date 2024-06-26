@@ -2,6 +2,12 @@ data "aws_apigatewayv2_api" "data_api" {
   api_id = var.api_id
 }
 
+
+data "aws_acm_certificate" "issued" {
+  domain   = var.name_certificate
+  statuses = ["ISSUED"]
+}
+
 resource "aws_apigatewayv2_api" "creat_api" {
   name                         = var.name_api
   protocol_type                = "HTTP"
@@ -28,4 +34,16 @@ resource "aws_apigatewayv2_stage" "example" {
   api_id = aws_apigatewayv2_api.creat_api.id
   name   = "$default"
   auto_deploy = true
+}
+
+
+resource "aws_apigatewayv2_domain_name" "example" {
+  for_each = var.domain_name
+  domain_name = each.value
+
+  domain_name_configuration {
+    certificate_arn = data.aws_acm_certificate.issued.arn
+    endpoint_type   = "REGIONAL"
+    security_policy = "TLS_1_2"
+  }
 }
