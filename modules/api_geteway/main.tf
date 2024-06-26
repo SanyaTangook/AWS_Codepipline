@@ -12,7 +12,6 @@ data "aws_lb" "get_lb" {
 
 data "aws_lb_listener" "lb_listener" {
   arn = data.aws_lb.get_lb.arn
-  port = 80
 }
 
 
