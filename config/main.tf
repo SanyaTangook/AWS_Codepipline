@@ -1,9 +1,8 @@
 module "api_gateway" {
-    source = "../modules/api_geteway"
-    api_id = var.api_id
-    name_api = var.name_api
-    id_vpc = var.id_vpc
-    lb = var.lb
+  for_each = var.data_api
+  source   = "../modules/api_geteway"
+  api_id   = each.value
+  name_api = each.key
 }
 
 output "api_gateway" {
