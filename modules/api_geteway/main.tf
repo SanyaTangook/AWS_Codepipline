@@ -3,7 +3,7 @@ data "aws_apigatewayv2_api" "data_api" {
 }
 
 data "aws_apigatewayv2_vpc_link" "id_vpc" {
-  vpc_link_id = var.id_vpc.id
+  vpc_link_id = var.id_vpc
 }
 
 data "aws_lb" "get_lb" {
