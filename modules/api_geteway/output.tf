@@ -1,3 +1,3 @@
 output "api_data" {
-  value = data.aws_apigatewayv2_api.data_api
+  value = data.aws_apigatewayv2_api.data_api.cors_configuration
 }
