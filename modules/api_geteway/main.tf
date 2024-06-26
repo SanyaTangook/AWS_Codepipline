@@ -8,6 +8,7 @@ data "aws_lb" "test" {
 
 data "aws_lb_listener" "listener" {
   arn = data.aws_lb.test.arn
+  port = 80
 }
 
 resource "aws_apigatewayv2_api" "creat_api" {
