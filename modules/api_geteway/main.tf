@@ -2,6 +2,15 @@ data "aws_apigatewayv2_api" "data_api" {
   api_id = var.api_id
 }
 
+data "aws_apigatewayv2_vpc_link" "id_vpc" {
+  vpc_link_id = var.id_vpc.id
+}
+
+data "aws_lb" "get_lb" {
+  name = var.lb
+}
+
+
 resource "aws_apigatewayv2_api" "creat_api" {
   name                         = var.name_api
   protocol_type                = "HTTP"
@@ -21,4 +30,15 @@ resource "aws_apigatewayv2_api" "creat_api" {
 resource "aws_apigatewayv2_route" "example" {
   api_id    = aws_apigatewayv2_api.creat_api.id
   route_key = "ANY /{proxy+}"
+}
+
+resource "aws_apigatewayv2_integration" "example" {
+  api_id           = aws_apigatewayv2_api.creat_api.id
+  integration_type = "HTTP_PROXY"
+
+  integration_method = "ANY"
+  integration_uri    =  data.aws_lb.get_lb.arn
+
+  connection_type    = "VPC_LINK"
+  connection_id      = data.aws_apigatewayv2_vpc_link.id_vpc.id
 }

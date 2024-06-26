@@ -8,3 +8,12 @@ variable "name_api" {
   default = ""
 }
 
+variable "id_vpc" {
+  type = string
+  default = ""
+}
+
+variable "lb" {
+  type = string
+  default = ""
+}
