@@ -2,3 +2,8 @@ variable "api_id" {
     type = string
     default = ""
 }
+
+variable "api_domain" {
+    type = string
+    default = ""
+}
