@@ -10,6 +10,11 @@ data "aws_lb" "get_lb" {
   name = var.lb
 }
 
+data "aws_lb_listener" "lb_listener" {
+  arn = data.aws_lb.get_lb.arn
+  port = 80
+}
+
 
 resource "aws_apigatewayv2_api" "creat_api" {
   name                         = var.name_api
