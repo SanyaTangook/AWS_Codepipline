@@ -22,10 +22,3 @@ resource "aws_apigatewayv2_route" "api_route" {
   api_id    = aws_apigatewayv2_api.creat_api.id
   route_key = "ANY /{proxy+}"
 }
-
-resource "aws_apigatewayv2_integration" "integration" {
-  api_id = aws_apigatewayv2_api.creat_api.id
-  integration_type = "HTTP_PROXY"
-  integration_uri = var.lb_name
-
-}
