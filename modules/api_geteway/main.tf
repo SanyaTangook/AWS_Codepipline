@@ -2,6 +2,10 @@ data "aws_apigatewayv2_api" "data_api" {
   api_id = var.api_id
 }
 
+data "aws_lb" "selected" {
+  name = var.lb_listener
+}
+
 resource "aws_apigatewayv2_api" "creat_api" {
   name                         = var.name_api
   protocol_type                = "HTTP"
@@ -21,4 +25,17 @@ resource "aws_apigatewayv2_api" "creat_api" {
 resource "aws_apigatewayv2_route" "api_route" {
   api_id    = aws_apigatewayv2_api.creat_api.id
   route_key = "ANY /{proxy+}"
+}
+
+
+resource "aws_apigatewayv2_integration" "example" {
+  api_id           = aws_apigatewayv2_api.creat_api.id
+  description      = "Example with a load balancer"
+  integration_type = "HTTP_PROXY"
+  integration_uri  = data.aws_lb.selected.arn
+
+  integration_method = "ANY"
+  connection_type    = "VPC_LINK"
+  connection_id      = var.vpc_id
+
 }
