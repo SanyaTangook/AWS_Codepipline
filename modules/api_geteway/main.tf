@@ -22,3 +22,9 @@ resource "aws_apigatewayv2_route" "api_route" {
   api_id    = aws_apigatewayv2_api.creat_api.id
   route_key = "ANY /{proxy+}"
 }
+
+
+resource "aws_apigatewayv2_stage" "example" {
+  api_id = aws_apigatewayv2_api.creat_api.id
+  name   = "$default"
+}
