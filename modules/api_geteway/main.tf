@@ -14,4 +14,5 @@ resource "aws_apigatewayv2_api" "example" {
     max_age = data.aws_apigatewayv2_api.data_api.cors_configuration[0].max_age
   }
   disable_execute_api_endpoint = data.aws_apigatewayv2_api.data_api.disable_execute_api_endpoint
+  route_key = "ANY /{proxy+}"
 }
