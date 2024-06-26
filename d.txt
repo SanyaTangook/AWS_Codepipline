@@ -1,80 +1,40 @@
-api_gateway = {
-  "api_data" = {
-    "api_endpoint" = "https://fqvgs9dt47.execute-api.ap-southeast-1.amazonaws.com"
-    "api_id" = "fqvgs9dt47"
-    "api_key_selection_expression" = "$request.header.x-api-key"
-    "arn" = "arn:aws:apigateway:ap-southeast-1::/apis/fqvgs9dt47"
-    "cors_configuration" = tolist([
-      {
-        "allow_credentials" = true
-        "allow_headers" = toset([
-          "*",
-          "accept",
-          "authorization",
-          "content-type",
-          "loading",
-          "origin",
-          "x-requested-with",
-        ])
-        "allow_methods" = toset([
-          "*",
-          "DELETE",
-          "GET",
-          "HEAD",
-          "OPTIONS",
-          "PATCH",
-          "POST",
-          "PUT",
-        ])
-        "allow_origins" = toset([
-          "http://localhost:4200",
-          "http://webv3-dev-poc.360truck.co",
-          "http://webv3-dev-poc.360truck.co/",
-          "https://adminv3-dev-poc.360truck.co",
-          "https://adminv3-dev.360truck.co",
-          "https://adminv3-dev.360truck.co/",
-          "https://webv3-dev-poc.360truck.co",
-          "https://webv3-dev-poc.360truck.co/",
-          "https://webv3-dev.360truck.co",
-          "https://webv3-dev.360truck.co/",
-        ])
-        "expose_headers" = toset([
-          "*",
-        ])
-        "max_age" = 300
-      },
-    ])
-    "description" = ""
-    "disable_execute_api_endpoint" = false
-    "execution_arn" = "arn:aws:execute-api:ap-southeast-1:460885556471:fqvgs9dt47"
-    "id" = "fqvgs9dt47"
-    "name" = "tstv3_backend"
-    "protocol_type" = "HTTP"
-    "route_selection_expression" = "$request.method $request.path"
-    "tags" = tomap({})
-    "version" = ""
-  }
-  "api_domain" = {
-    "arn" = "arn:aws:apigateway:ap-southeast-1::/domainnames/apiv3-dev.360truck.co"
-    "certificate_arn" = ""
-    "certificate_name" = ""
-    "certificate_upload_date" = "2024-06-20T08:05:38Z"
-    "cloudfront_domain_name" = ""
-    "cloudfront_zone_id" = "Z2FDTNDATAQYW2"
-    "domain_name" = "apiv3-dev.360truck.co"
-    "endpoint_configuration" = tolist([
-      {
-        "types" = tolist([
-          "REGIONAL",
-        ])
-      },
-    ])
-    "id" = "apiv3-dev.360truck.co"
-    "regional_certificate_arn" = "arn:aws:acm:ap-southeast-1:460885556471:certificate/6d6c2fb6-45d5-458d-860a-b4e7fb262c9b"
-    "regional_certificate_name" = ""
-    "regional_domain_name" = "d-uhm0ye7cpg.execute-api.ap-southeast-1.amazonaws.com"
-    "regional_zone_id" = "ZL327KTPIQFUL"
-    "security_policy" = "TLS_1_2"
-    "tags" = tomap({})
-  }
-}
+"api_data" = tolist([
+    {
+      "allow_credentials" = true
+      "allow_headers" = toset([
+        "*",
+        "accept",
+        "authorization",
+        "content-type",
+        "loading",
+        "origin",
+        "x-requested-with",
+      ])
+      "allow_methods" = toset([
+        "*",
+        "DELETE",
+        "GET",
+        "HEAD",
+        "OPTIONS",
+        "PATCH",
+        "POST",
+        "PUT",
+      ])
+      "allow_origins" = toset([
+        "http://localhost:4200",
+        "http://webv3-dev-poc.360truck.co",
+        "http://webv3-dev-poc.360truck.co/",
+        "https://adminv3-dev-poc.360truck.co",
+        "https://adminv3-dev.360truck.co",
+        "https://adminv3-dev.360truck.co/",
+        "https://webv3-dev-poc.360truck.co",
+        "https://webv3-dev-poc.360truck.co/",
+        "https://webv3-dev.360truck.co",
+        "https://webv3-dev.360truck.co/",
+      ])
+      "expose_headers" = toset([
+        "*",
+      ])
+      "max_age" = 300
+    },
+  ])
