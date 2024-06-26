@@ -3,6 +3,7 @@ module "api_gateway" {
   source   = "../modules/api_geteway"
   api_id   = each.value
   name_api = each.key
+  lb_name = var.lb_name[each.key]
 }
 
 output "api_gateway" {

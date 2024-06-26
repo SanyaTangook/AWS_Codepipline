@@ -2,6 +2,14 @@ data "aws_apigatewayv2_api" "data_api" {
   api_id = var.api_id
 }
 
+data "aws_lb" "test" {
+  name = var.lb_name
+}
+
+data "aws_lb_listener" "listener" {
+  arn = data.aws_lb.test.arn
+  port = 80
+}
 
 resource "aws_apigatewayv2_api" "creat_api" {
   name                         = var.name_api
@@ -19,7 +27,14 @@ resource "aws_apigatewayv2_api" "creat_api" {
   route_selection_expression   = data.aws_apigatewayv2_api.data_api.route_selection_expression
 }
 
-resource "aws_apigatewayv2_route" "example" {
+resource "aws_apigatewayv2_route" "api_route" {
   api_id    = aws_apigatewayv2_api.creat_api.id
   route_key = "ANY /{proxy+}"
+}
+
+resource "aws_apigatewayv2_integration" "integration" {
+  api_id = aws_apigatewayv2_api.creat_api.id
+  integration_type = "HTTP_PROXY"
+  integration_uri = data.aws_lb_listener.listener.arn
+
 }
