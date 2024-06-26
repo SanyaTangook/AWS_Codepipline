@@ -3,7 +3,7 @@ module "api_gateway" {
   source   = "../modules/api_geteway"
   api_id   = each.value
   name_api = each.key
-  domain_name = var.domain_name
+  domain_name = var.domain_name[each.key]
   name_certificate = var.name_certificate
   
 }

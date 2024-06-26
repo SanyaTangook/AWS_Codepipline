@@ -3,7 +3,7 @@ variable "data_api" {
 }
 
 variable "domain_name" {
-  type = set(string)
+  type = map(string)
 }
 
 variable "name_certificate" {

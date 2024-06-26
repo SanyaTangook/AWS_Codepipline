@@ -41,8 +41,7 @@ resource "aws_apigatewayv2_stage" "example" {
 
 resource "aws_apigatewayv2_domain_name" "example" {
   depends_on = [ aws_apigatewayv2_api.creat_api ]
-  for_each = var.domain_name
-  domain_name = each.value
+  domain_name = var.domain_name
 
   domain_name_configuration {
     certificate_arn = data.aws_acm_certificate.issued.arn

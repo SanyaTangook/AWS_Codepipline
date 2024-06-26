@@ -9,7 +9,7 @@ variable "name_api" {
 }
 
 variable "domain_name" {
-  type = set(string)
+  type = string
 }
 
 variable "name_certificate" {
