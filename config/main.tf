@@ -17,3 +17,7 @@ data "aws_ecs_service" "example" {
   service_name = var.service_name.service_name
   cluster_arn  = var.service_name.cluster_arn
 }
+
+output "ecs" {
+  value = data.aws_ecs_service.example
+}
