@@ -24,12 +24,16 @@ This is **IaC** Copy API Gateway Prod for Build API Gateway Staging
 
 ```terrafrom
 data_api ={
-    Id_original = "xx78xx"
-    domain_name = "test.78.co" 
+    "name_api" = {
+        Id_original = "xx78xx"
+        domain_name = "test.78.co" 
+    }
 }
 
-name_certificate = "name_certificate" * in tap VPC links
+name_certificate = "name_certificate" 
 ```
+
+- **certificate look in tap VPC links**
 
 ## **Go to build** 🛠️🤯
 
