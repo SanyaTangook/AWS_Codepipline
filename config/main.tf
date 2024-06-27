@@ -26,3 +26,7 @@ data "aws_ecs_container_definition" "ecs-mongo" {
 output "ecs" {
   value = data.aws_ecs_service.example
 }
+
+output "container" {
+  value = data.aws_ecs_container_definition.ecs-mongo
+}
