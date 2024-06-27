@@ -14,13 +14,15 @@
 
 
 data "aws_ecs_service" "example" {
-  service_name = var.service_name.service_name
-  cluster_arn  = var.service_name.cluster_arn
+  for_each     = var.service_name
+  service_name = each.key.service_name
+  cluster_arn  = each.key.cluster_arn
 }
 
 data "aws_ecs_container_definition" "ecs-mongo" {
-  task_definition = var.container.task_definition
-  container_name  = var.container.container_name
+  for_each        = var.container
+  task_definition = each.key.task_definition
+  container_name  = each.key.container_name
 }
 
 output "ecs" {
