@@ -9,3 +9,8 @@ variable "domain_name" {
 variable "name_certificate" {
   type = string
 }
+
+variable "region" {
+  type = string
+  default = "ap-southeast-1"
+}
