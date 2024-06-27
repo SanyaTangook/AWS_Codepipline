@@ -11,14 +11,20 @@
 # }
 
 variable "region" {
-  type = string
+  type    = string
   default = "ap-southeast-1"
 }
 
+variable "container" {
+  type = object({
+    task_definition = string
+    container_name  = string
+  })
+}
 
 variable "service_name" {
   type = object({
     service_name = string
-    cluster_arn = string
+    cluster_arn  = string
   })
 }
