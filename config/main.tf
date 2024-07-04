@@ -13,6 +13,7 @@
 
 module "test" {
   source = "../modules/pipline/codebuild"
+  name_codebuile = var.name_codebuile
 }
 
 output "name" {

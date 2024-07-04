@@ -8,6 +8,12 @@ variable "environment_variable" {
       name = string
       value = string 
     })) 
+    default = {
+      "Test" = {
+        name = ""
+        value = ""
+      }
+    }
 }
 
 
