@@ -1,3 +1,4 @@
+# API gateway variable 
 variable "name_certificate" {
   type = string
 }
@@ -13,3 +14,23 @@ variable "data_api" {
     domain_name = string 
   }))
 }
+
+
+# Code Build variable 
+variable "buildspec" {
+  type = string
+  default = ""
+}
+
+variable "environment_variable" {
+    type = map(object({
+      name = string
+      value = string 
+    })) 
+}
+
+
+variable "name_codebuile" {
+  type = string
+}
+

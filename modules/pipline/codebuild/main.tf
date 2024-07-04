@@ -1,91 +1,91 @@
-# data "aws_iam_policy_document" "assume_role" {
-#   statement {
-#     effect = "Allow"
+data "aws_iam_policy_document" "assume_role" {
+  statement {
+    effect = "Allow"
 
-#     principals {
-#       type        = "Service"
-#       identifiers = ["codebuild.amazonaws.com"]
-#     }
+    principals {
+      type        = "Service"
+      identifiers = ["codebuild.amazonaws.com"]
+    }
 
-#     actions = ["sts:AssumeRole"]
-#   }
-# }
+    actions = ["sts:AssumeRole"]
+  }
+}
 
-# resource "aws_iam_role" "example" {
-#   name               = "example"
-#   assume_role_policy = data.aws_iam_policy_document.assume_role.json
-# }
+resource "aws_iam_role" "CodeBuil_role" {
+  name               = "CodeBuil${var.name_codebuile}"
+  assume_role_policy = data.aws_iam_policy_document.assume_role.json
+}
 
-# data "aws_iam_policy_document" "example" {
-#   statement {
-#     effect = "Allow"
+data "aws_iam_policy_document" "codebuild_policy" {
+  statement {
+    effect = "Allow"
 
-#     actions = [
-#       "logs:CreateLogGroup",
-#       "logs:CreateLogStream",
-#       "logs:PutLogEvents",
-#     ]
+    actions = [
+      "logs:CreateLogGroup",
+      "logs:CreateLogStream",
+      "logs:PutLogEvents",
+    ]
 
-#     resources = ["*"]
-#   }
+    resources = ["*"]
+  }
 
-#   statement {
-#     effect = "Allow"
+  statement {
+    effect = "Allow"
 
-#     actions = [
-#       "ec2:CreateNetworkInterface",
-#       "ec2:DescribeDhcpOptions",
-#       "ec2:DescribeNetworkInterfaces",
-#       "ec2:DeleteNetworkInterface",
-#       "ec2:DescribeSubnets",
-#       "ec2:DescribeSecurityGroups",
-#       "ec2:DescribeVpcs",
-#     ]
+    actions = [
+      "ec2:CreateNetworkInterface",
+      "ec2:DescribeDhcpOptions",
+      "ec2:DescribeNetworkInterfaces",
+      "ec2:DeleteNetworkInterface",
+      "ec2:DescribeSubnets",
+      "ec2:DescribeSecurityGroups",
+      "ec2:DescribeVpcs",
+    ]
 
-#     resources = ["*"]
-#   }
+    resources = ["*"]
+  }
 
-#   statement {
-#     effect    = "Allow"
-#     actions   = ["ec2:CreateNetworkInterfacePermission"]
-#     resources = ["arn:aws:ec2:us-east-1:123456789012:network-interface/*"]
+  statement {
+    effect    = "Allow"
+    actions   = ["ec2:CreateNetworkInterfacePermission"]
+    resources = ["arn:aws:ec2:us-east-1:123456789012:network-interface/*"]
 
-#     condition {
-#       test     = "StringEquals"
-#       variable = "ec2:Subnet"
+    condition {
+      test     = "StringEquals"
+      variable = "ec2:Subnet"
 
-#       values = [
-#         aws_subnet.example1.arn,
-#         aws_subnet.example2.arn,
-#       ]
-#     }
+      values = [
+        aws_subnet.example1.arn,
+        aws_subnet.example2.arn,
+      ]
+    }
 
-#     condition {
-#       test     = "StringEquals"
-#       variable = "ec2:AuthorizedService"
-#       values   = ["codebuild.amazonaws.com"]
-#     }
-#   }
+    condition {
+      test     = "StringEquals"
+      variable = "ec2:AuthorizedService"
+      values   = ["codebuild.amazonaws.com"]
+    }
+  }
 
-#   statement {
-#     effect  = "Allow"
-#     actions = ["s3:*"]
-#     resources = [
-#       aws_s3_bucket.example.arn,
-#       "${aws_s3_bucket.example.arn}/*",
-#     ]
-#   }
-# }
+  statement {
+    effect  = "Allow"
+    actions = ["s3:*"]
+    resources = [
+      aws_s3_bucket.example.arn,
+      "${aws_s3_bucket.example.arn}/*",
+    ]
+  }
+}
 
-# resource "aws_iam_role_policy" "example" {
-#   role   = aws_iam_role.example.name
-#   policy = data.aws_iam_policy_document.example.json
-# }
+resource "aws_iam_role_policy" "codebuild_policy" {
+  role   = aws_iam_role.CodeBuil_role.name
+  policy = data.aws_iam_policy_document.codebuild_policy.json
+}
 
-resource "aws_codebuild_project" "example" {
-  name          = "test-project"
+resource "aws_codebuild_project" "CodeBuil" {
+  name          = var.name_codebuile
   build_timeout = 5
-  service_role  = ""
+  service_role  = aws_iam_role.CodeBuil_role.arn
 
   artifacts {
     type = "CODEPIPELINE"
@@ -104,16 +104,6 @@ resource "aws_codebuild_project" "example" {
           value = environment_variable.value.value
         }
     }
-    environment_variable {
-      name  = "SOME_KEY1"
-      value = "SOME_VALUE1"
-    }
-
-    environment_variable {
-      name  = "SOME_KEY2"
-      value = "SOME_VALUE2"
-      type  = "PARAMETER_STORE"
-    }
   }
 
   source {
@@ -121,26 +111,3 @@ resource "aws_codebuild_project" "example" {
     buildspec = var.buildspec
   }
 }
-
-output "sts" {
-  value = aws_codebuild_project.example.environment
-}
-
-variable "environment_variable" {
-    type = map(object({
-      name = string
-      value = string 
-    })) 
-    default = {
-      "name" = {
-        name = "dd"
-        value ="dd"
-      }
-      "test" = {
-        name = "ds"
-        value = "ds"
-      }
-    }
-}
-
-
