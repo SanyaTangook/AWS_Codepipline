@@ -52,29 +52,11 @@ data "aws_iam_policy_document" "codebuild_policy" {
 
     condition {
       test     = "StringEquals"
-      variable = "ec2:Subnet"
-
-      values = [
-        aws_subnet.example1.arn,
-        aws_subnet.example2.arn,
-      ]
-    }
-
-    condition {
-      test     = "StringEquals"
       variable = "ec2:AuthorizedService"
       values   = ["codebuild.amazonaws.com"]
     }
   }
 
-  statement {
-    effect  = "Allow"
-    actions = ["s3:*"]
-    resources = [
-      aws_s3_bucket.example.arn,
-      "${aws_s3_bucket.example.arn}/*",
-    ]
-  }
 }
 
 resource "aws_iam_role_policy" "codebuild_policy" {
