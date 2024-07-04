@@ -79,13 +79,14 @@ resource "aws_codebuild_project" "CodeBuil" {
     type                        = "LINUX_CONTAINER"
     image_pull_credentials_type = "CODEBUILD"
 
-    dynamic "environment_variable" {
-      for_each = var.environment_variable
-        content {
-          name = environment_variable.value.name
-          value = environment_variable.value.value
-        }
-    }
+    # dynamic "environment_variable" {
+    #   for_each = var.environment_variable
+    #     content {
+    #       name = environment_variable.value.name
+    #       value = environment_variable.value.value
+    #     }
+    # }
+
   }
 
   source {
