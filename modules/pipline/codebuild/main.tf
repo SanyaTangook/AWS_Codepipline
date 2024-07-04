@@ -90,6 +90,6 @@ resource "aws_codebuild_project" "CodeBuil" {
 
   source {
     type = "NO_SOURCE"
-    buildspec = var.buildspec
+    buildspec = var.buildspec != "" ? var.buildspec : "buildspec.yml"
   }
 }
