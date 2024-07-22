@@ -26,10 +26,15 @@ module "ECR" {
   ecr_name = var.ecr_name[count.index]
 }
 
+module "namespace" {
+  source = "../modules/namespace"
+  ecs_cluster = var.ecs_cluster
+}
+
 module "ecr_name" {
   source = "../modules/ECS"
+  depends_on = [ module.namespace ]
   for_each = toset(var.ecr_name)
-  ecs_cluster = var.ecs_cluster
   role_ecs = var.role_ecs
   family = each.key
   url_ecr = var.url_ecr
