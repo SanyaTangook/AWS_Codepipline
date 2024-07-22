@@ -48,3 +48,12 @@ resource "aws_ecs_task_definition" "task_definition" {
     operating_system_family = "LINUX"
   }
 }
+
+
+resource "aws_ecs_service" "ecs_service" {
+  name = ""
+  cluster = ""
+  propagate_tags = "SERVICE"
+  launch_type = "FARGATE"
+
+}
