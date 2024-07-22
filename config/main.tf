@@ -24,5 +24,12 @@ module "ECR" {
   source   = "../modules/ECR"
   count = length(var.ecr_name)
   ecr_name = var.ecr_name[count.index]
+}
 
+module "ecr_name" {
+  source = "../modules/ECS"
+  ecs_cluster = var.ecs_cluster
+  role_ecs = var.role_ecs
+  family = var.family
+  url_ecr = var.url_ecr
 }
