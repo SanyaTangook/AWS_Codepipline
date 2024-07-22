@@ -1,4 +1,4 @@
 variable "ecr_name" {
-    type = string
-    default = ""
+    type = list(string)
+    default = [""]
 }

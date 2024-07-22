@@ -1,4 +1,4 @@
 variable "ecs_cluster" {
-  type = list(string)
-  default = [""]
+  type = string
+  default = ""
 }

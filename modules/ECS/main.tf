@@ -3,12 +3,13 @@ data "aws_iam_role" "IAM" {
 }
 
 resource "aws_ecs_task_definition" "task_definition" {
-  family                   = var.family
+  for_each = toset(var.family)
+  family                   = each.value
   container_definitions = <<TASK_DEFINITION
   [
     {
-      "name": "${var.family}",
-      "image": "${var.url_ecr}/${var.family}:latest",
+      "name": "${each.value}",
+      "image": "${var.url_ecr}/${each.value}:latest",
       "cpu": 0,
       "portMappings": [
           {
@@ -40,11 +41,29 @@ resource "aws_ecs_task_definition" "task_definition" {
   }
 }
 
+data "aws_ecs_cluster" "ecs-id" {
+  cluster_name = var.cluster
+}
 
 # resource "aws_ecs_service" "ecs_service" {
-#   name = ""
-#   cluster = ""
+#   for_each = toset(var.family)
+#   name = each.value
+#   cluster = data.aws_ecs_cluster.ecs-id.id
+#   task_definition = aws_ecs_task_definition.task_definition[each.key].arn
 #   propagate_tags = "SERVICE"
 #   launch_type = "FARGATE"
+#   desired_count = 1
+#   iam_role = ""
 
+#   network_configuration {
+#     subnets = [  ]
+#     security_groups = [  ]
+#     assign_public_ip = true
+#   }
+
+#   load_balancer {
+#     target_group_arn = ""
+#     container_name = ""
+#     container_port = ""
+#   }
 # }

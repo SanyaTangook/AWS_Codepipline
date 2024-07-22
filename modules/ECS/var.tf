@@ -4,9 +4,15 @@ variable "role_ecs" {
 }
 
 variable "family" {
+  type = list(string)
+  default = [""]
+}
+
+variable "cluster" {
   type = string
   default = ""
 }
+
 variable "url_ecr" {
   type = string
   default = ""
