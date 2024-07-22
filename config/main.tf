@@ -22,20 +22,22 @@
 
 module "ECR" {
   source   = "../modules/ECR"
-  count = length(var.ecr_name)
-  ecr_name = var.ecr_name[count.index]
+  for_each = var.ECS
+  ecr_name = each.value
 }
 
 module "namespace" {
   source = "../modules/namespace"
-  ecs_cluster = var.ecs_cluster
+  for_each = var.ECS
+  ecs_cluster = each.key
 }
 
 module "ecr_name" {
   source = "../modules/ECS"
   depends_on = [ module.namespace ]
-  for_each = toset(var.ecr_name)
+  for_each = var.ECS
+  cluster = each.key
   role_ecs = var.role_ecs
-  family = each.key
+  family = each.value
   url_ecr = var.url_ecr
 }

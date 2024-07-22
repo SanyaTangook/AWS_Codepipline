@@ -34,10 +34,6 @@ variable "region" {
 #   type = string
 # }
 
-variable "ecr_name" {
-  type    = list(string)
-  default = [""]
-}
 
 variable "ecs_cluster" {
   type = list(string)
@@ -49,10 +45,14 @@ variable "role_ecs" {
   default = ""
 }
 
-variable "family" {
-  type = string
-  default = ""
-}
 variable "url_ecr" {
   type = string
+}
+
+
+variable "ECS" {
+  type = map(list(string))
+  default = {
+    "cluster" = [ "task" ]
+  }  
 }
