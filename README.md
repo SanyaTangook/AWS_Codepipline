@@ -14,6 +14,7 @@ This is **IaC** Copy API Gateway Prod for Build API Gateway Staging
     |__api_gateway
     |__ECS 
     |__ECR
+    |__namespace
 ```
 
 - How To Config variables
@@ -30,6 +31,14 @@ data_api ={
 }
 
 name_certificate = "name_certificate" 
+
+ECS = {
+    "Cluster_name" = [ "name_task" ]
+}
+
+role_ecs = "Role_ECS"
+
+url_ecr  = "xxxxxxx.xx.xx.ap-southeast-1.amazonaws.com"
 ```
 
 - **certificate look in tap VPC links**
@@ -40,4 +49,4 @@ name_certificate = "name_certificate"
 terraform apply -var-file="terraform.tfvars"
 ```
 
-# Modules ECS and ECR not work
+# Modules ECS not work
