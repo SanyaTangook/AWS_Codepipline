@@ -1,3 +1,3 @@
 output "ecs" {
-  value = aws_ecs_cluster[*].ecs_cluster.id
+  value = aws_ecs_cluster.ecs_cluster.id[*]
 }
