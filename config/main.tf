@@ -28,8 +28,9 @@ module "ECR" {
 
 module "ecr_name" {
   source = "../modules/ECS"
+  for_each = toset(var.ecr_name)
   ecs_cluster = var.ecs_cluster
   role_ecs = var.role_ecs
-  family = var.family
+  family = each.key
   url_ecr = var.url_ecr
 }

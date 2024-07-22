@@ -40,8 +40,8 @@ variable "ecr_name" {
 }
 
 variable "ecs_cluster" {
-  type = string
-  default = ""
+  type = list(string)
+  default = [""]
 }
 
 variable "role_ecs" {
