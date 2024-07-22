@@ -22,7 +22,7 @@
 
 module "ECR" {
   source   = "../modules/ECR"
-  for_each = var.ecr_name
-  ecr_name = each.value
+  count = length(var.ecr_name)
+  ecr_name = var.ecr_name[count.index]
 
 }

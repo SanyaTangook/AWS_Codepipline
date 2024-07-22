@@ -35,6 +35,6 @@ variable "region" {
 # }
 
 variable "ecr_name" {
-  type    = set(string)
+  type    = list(string)
   default = [""]
 }
