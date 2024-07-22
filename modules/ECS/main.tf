@@ -1,6 +1,6 @@
 resource "aws_ecs_cluster" "ecs_cluster" {
-  count = length(var.ecs_cluster)
-  name = var.ecs_cluster[count.index]
+  for_each = toset(var.ecs_cluster)
+  name = each.key
 }
 
 data "aws_iam_role" "IAM" {
