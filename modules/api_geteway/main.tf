@@ -31,7 +31,7 @@ resource "aws_apigatewayv2_route" "api_route" {
 }
 
 
-resource "aws_apigatewayv2_stage" "example" {
+resource "aws_apigatewayv2_stage" "api_gateway" {
   depends_on = [ aws_apigatewayv2_route.api_route ]
   api_id = aws_apigatewayv2_api.creat_api.id
   name   = "$default"
@@ -39,7 +39,7 @@ resource "aws_apigatewayv2_stage" "example" {
 }
 
 
-resource "aws_apigatewayv2_domain_name" "example" {
+resource "aws_apigatewayv2_domain_name" "creat_domain" {
   depends_on = [ aws_apigatewayv2_api.creat_api ]
   domain_name = var.domain_name
 
