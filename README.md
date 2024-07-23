@@ -49,4 +49,8 @@ url_ecr  = "xxxxxxx.xx.xx.ap-southeast-1.amazonaws.com"
 terraform apply -var-file="terraform.tfvars"
 ```
 
-# Modules ECS not work
+### Modules in Plan
+
+- ecs service
+- vpc
+- pipeline
