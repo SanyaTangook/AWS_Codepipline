@@ -11,15 +11,6 @@
 #  value = module.api_gateway
 # }
 
-# module "test" {
-#   source = "../modules/pipline/codebuild"
-#   name_codebuile = var.name_codebuile
-# }
-
-# output "name" {
-#   value = module.test
-# }
-
 # module "ECR" {
 #   source   = "../modules/ECR"
 #   for_each = var.ECS
@@ -46,18 +37,23 @@
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
-  name = "my-vpc"
-  cidr = "10.0.0.0/16"
+  name = var.name_vpc
+  cidr = var.cidr
 
-  azs             = ["ap-southeast-1a","ap-southeast-1b", "ap-southeast-1c"]
-  private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
-  public_subnets  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
+  azs             = var.Availability_Zone
+  private_subnets = var.private_subnets
+  public_subnets  = var.public_subnets
 
-  enable_nat_gateway = true
-  enable_vpn_gateway = true
+  enable_nat_gateway = var.enable_nat_gateway
+  enable_vpn_gateway = var.enable_vpn_gateway
+  
+  tags = var.tags_vpc
+}
 
-  tags = {
-    Terraform = "true"
-    Environment = "dev"
-  }
+
+module "vpc_endpoint" {
+  depends_on = [ module.vpc ]
+  source = "../modules/Vpc_endpoint"
+  vpc_id = module.vpc.vpc_id
+  service_name = var.service_name
 }
