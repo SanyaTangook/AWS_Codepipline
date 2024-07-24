@@ -1,7 +1,4 @@
-data "aws_ecs_task_definition" "task_definition" {
-  for_each = toset(var.family)
-  task_definition = "${each.value}:LATEST"
-}
+
 
 resource "aws_ecs_service" "ecs_service" {
   for_each = toset(var.family)
