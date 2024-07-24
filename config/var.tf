@@ -102,3 +102,7 @@ variable "service_name" {
   type = string
   default = ""
 }
+
+variable "iam_role" {
+  type = string
+}

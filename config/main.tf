@@ -39,5 +39,5 @@ module "ecs_service" {
   for_each = var.ECS
   family = each.value
   cluster = each.key
-  iam_role = var.role_ecs
+  iam_role = var.iam_role
 }
