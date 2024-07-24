@@ -1,0 +1,35 @@
+{
+    "ECS-SG-nonProd-Front-End": [
+        "sg_tst_identity",
+        "sg_tstv2_admin_web",
+        "sg_tstv3_admin_web",
+        "sg_tstv3_frontend_web"
+    ],
+    "ECS-SG-nonProd-Back-End": [
+        "sg_tst_cronjobs",
+        "sg_tstv2_docgen",
+        "sg_tstv2_fileserver",
+        "sg_tstv2_matchingproject",
+        "sg_tstv2_noti",
+        "sg_tstv3_backend",
+        "sg-tst_cdp",
+        "sg-tstv2_backend"
+    ],
+    "ECS-nonProd-Front-End": [
+        "tst_identity",
+        "tstv2_admin_web",
+        "tstv3_admin_web",
+        "tstv3_frontend_web"
+    ],
+    "ECS-nonProd-Back-End": [
+        "tst_cronjobs",
+        "tstv2_docgen",
+        "tstv2_fileserver",
+        "tstv2_matchingproject",
+        "tstv2_noti",
+        "tstv3_backend",
+        "tst_cdp",
+        "tstv2_backend"
+    ],
+    "service_status": "ON"
+}

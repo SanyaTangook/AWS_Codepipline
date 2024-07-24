@@ -86,22 +86,13 @@ resource "aws_codepipeline" "codepipeline" {
 
 
 data "aws_s3_bucket" "codepipeline_bucket" {
-  bucket = ""
+  bucket = var.s3
 }
 
 data "aws_codestarconnections_connection" "GitLab" {
-  name = "GitLab-360Truck"
+  name = var.Git_connection
 }
 
-
-resource "aws_s3_bucket_public_access_block" "codepipeline_bucket_pab" {
-  bucket = aws_s3_bucket.codepipeline_bucket.id
-
-  block_public_acls       = true
-  block_public_policy     = true
-  ignore_public_acls      = true
-  restrict_public_buckets = true
-}
 
 data "aws_iam_policy_document" "assume_role" {
   statement {
@@ -161,8 +152,4 @@ resource "aws_iam_role_policy" "codepipeline_policy" {
   name   = "codepipeline_policy"
   role   = aws_iam_role.codepipeline_role.id
   policy = data.aws_iam_policy_document.codepipeline_policy.json
-}
-
-data "aws_kms_alias" "s3kmskey" {
-  name = "alias/myKmsKey"
 }

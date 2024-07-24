@@ -45,25 +45,3 @@ data "aws_ecs_cluster" "ecs-id" {
   cluster_name = var.cluster
 }
 
-# resource "aws_ecs_service" "ecs_service" {
-#   for_each = toset(var.family)
-#   name = each.value
-#   cluster = data.aws_ecs_cluster.ecs-id.id
-#   task_definition = aws_ecs_task_definition.task_definition[each.key].arn
-#   propagate_tags = "SERVICE"
-#   launch_type = "FARGATE"
-#   desired_count = 1
-#   iam_role = ""
-
-#   network_configuration {
-#     subnets = [  ]
-#     security_groups = [  ]
-#     assign_public_ip = true
-#   }
-
-#   load_balancer {
-#     target_group_arn = ""
-#     container_name = ""
-#     container_port = ""
-#   }
-# }

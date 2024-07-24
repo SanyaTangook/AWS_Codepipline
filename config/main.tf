@@ -32,3 +32,10 @@
 #   family = each.value
 #   url_ecr = var.url_ecr
 # }
+
+
+module "ecs_service" {
+  source = "../modules/ECS/service"
+  for_each = var.ECS
+  family = each.value
+}
