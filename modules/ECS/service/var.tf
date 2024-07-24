@@ -9,7 +9,7 @@ variable "cluster" {
 
 data "aws_ecs_task_definition" "task_definition" {
   for_each = toset(var.family)
-  task_definition = "${each.value}:LATEST"
+  task_definition = "${each.value}"
 }
 
 data "aws_ecs_cluster" "ecs-id" {
