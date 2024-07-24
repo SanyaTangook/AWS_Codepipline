@@ -9,11 +9,11 @@ resource "aws_ecs_service" "ecs_service" {
   launch_type = "FARGATE"
   desired_count = 1
 
-  # network_configuration {
-  #   subnets = [  ]
-  #   security_groups = [  ]
-  #   assign_public_ip = true
-  # }
+  network_configuration {
+    subnets = [ "10.20.128.0/20" , "10.20.144.0/20" ]
+    security_groups = [ "sg-0c2ee03e79dee5fb7" ]
+    assign_public_ip = false
+  }
 
   # load_balancer {
   #   target_group_arn = ""
