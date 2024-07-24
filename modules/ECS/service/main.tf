@@ -8,6 +8,7 @@ resource "aws_ecs_service" "ecs_service" {
   propagate_tags = "SERVICE"
   launch_type = "FARGATE"
   desired_count = 1
+  iam_role = var.iam_role
 
   network_configuration {
     subnets = [ "10.20.144.0/20" ]
