@@ -1,24 +1,7 @@
-# resource "aws_codebuild_project" "name" {
-#   name = ""
-#   service_role = ""
-#   source {
-#     type = "CODEPIPELINE"
-
-#   }
-#   artifacts {
-#     type = "S3"
-#   }
-  
-#   environment {
-#     compute_type = ""
-#     image = ""
-#     type = "LINUX_CONTAINER"
-#   }
-# }
-
 resource "aws_codepipeline" "codepipeline" {
-  name     = "tf-test-pipeline"
-  role_arn = aws_iam_role.codepipeline_role.arn
+  for_each = var.pipeline_name
+  name     = each.value
+  role_arn = aws_iam_role.codepipeline_role[each.value].arn
 
   artifact_store {
     location = data.aws_s3_bucket.codepipeline_bucket.bucket
@@ -27,7 +10,6 @@ resource "aws_codepipeline" "codepipeline" {
 
   stage {
     name = "Source"
-
     action {
       name             = "Source"
       category         = "Source"
@@ -35,7 +17,6 @@ resource "aws_codepipeline" "codepipeline" {
       provider         = "CodeStarSourceConnection"
       version          = "1"
       output_artifacts = ["source_output"]
-
       configuration = {
         ConnectionArn    = data.aws_codestarconnections_connection.GitLab.arn
         FullRepositoryId = ""
@@ -149,7 +130,8 @@ data "aws_iam_policy_document" "codepipeline_policy" {
 }
 
 resource "aws_iam_role_policy" "codepipeline_policy" {
-  name   = "codepipeline_policy"
+  for_each = var.pipeline_name
+  name   = "${each.value}_codepipeline_policy"
   role   = aws_iam_role.codepipeline_role.id
   policy = data.aws_iam_policy_document.codepipeline_policy.json
 }

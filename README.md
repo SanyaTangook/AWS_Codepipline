@@ -52,5 +52,4 @@ terraform apply -var-file="terraform.tfvars"
 ### Modules in Plan
 
 - ecs service
-- vpc
 - pipeline
