@@ -8,10 +8,10 @@ resource "aws_ecs_service" "ecs_service" {
   propagate_tags = "SERVICE"
   launch_type = "FARGATE"
   desired_count = 1
-  iam_role = var.im_role
+  iam_role = var.iam_role
 
   network_configuration {
-    subnets = [ "10.20.144.0/20" ]
+    subnets = [ "172.31.32.0/20" ]
     security_groups = [ "sg-0c2ee03e79dee5fb7" ]
     assign_public_ip = false
   }
