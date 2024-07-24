@@ -23,15 +23,15 @@
 #   ecs_cluster = each.key
 # }
 
-# module "ecr_name" {
-#   source = "../modules/ECS"
-#   depends_on = [ module.namespace ]
-#   for_each = var.ECS
-#   cluster = each.key
-#   role_ecs = var.role_ecs
-#   family = each.value
-#   url_ecr = var.url_ecr
-# }
+module "ecr_name" {
+  source = "../modules/ECS"
+  depends_on = [ module.namespace ]
+  for_each = var.ECS
+  cluster = each.key
+  role_ecs = var.role_ecs
+  family = each.value
+  url_ecr = var.url_ecr
+}
 
 
 module "ecs_service" {
