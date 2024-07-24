@@ -32,28 +32,3 @@
 #   family = each.value
 #   url_ecr = var.url_ecr
 # }
-
-
-module "vpc" {
-  source = "terraform-aws-modules/vpc/aws"
-
-  name = var.name_vpc
-  cidr = var.cidr
-
-  azs             = var.Availability_Zone
-  private_subnets = var.private_subnets
-  public_subnets  = var.public_subnets
-
-  enable_nat_gateway = var.enable_nat_gateway
-  enable_vpn_gateway = var.enable_vpn_gateway
-  
-  tags = var.tags_vpc
-}
-
-
-module "vpc_endpoint" {
-  depends_on = [ module.vpc ]
-  source = "../modules/Vpc_endpoint"
-  vpc_id = module.vpc.vpc_id
-  service_name = var.service_name
-}
