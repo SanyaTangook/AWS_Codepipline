@@ -25,7 +25,7 @@
 
 module "ecr_name" {
   source = "../modules/ECS"
-  depends_on = [ module.namespace ]
+  # depends_on = [ module.namespace ]
   for_each = var.ECS
   cluster = each.key
   role_ecs = var.role_ecs
