@@ -135,3 +135,23 @@ resource "aws_iam_role_policy" "codepipeline_policy" {
   role   = aws_iam_role.codepipeline_role.id
   policy = data.aws_iam_policy_document.codepipeline_policy.json
 }
+
+
+/*
+  CodeBuild But it not Work 
+*/
+resource "aws_codebuild_project" "name" {
+  name = ""
+  service_role = ""
+  source {
+    type = ""
+  }
+  artifacts {
+    type = ""
+  }
+  environment {
+    compute_type = ""
+    image = ""
+    type = ""
+  }
+}
