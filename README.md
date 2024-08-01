@@ -25,8 +25,3 @@ This is **IaC** Copy API Gateway Prod for Build API Gateway Staging
 ```bash
 terraform apply -var-file="terraform.tfvars"
 ```
-
-### Modules in Plan
-
-- ecs service
-- pipeline
