@@ -1,5 +1,5 @@
 module "ecr_name" {
-  source = "../modules/ECS"
+  source = "../../modules/ECS"
   for_each = var.ECS
   cluster = each.key
   role_ecs = var.role_ecs

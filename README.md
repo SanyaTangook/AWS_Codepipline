@@ -25,3 +25,12 @@ This is **IaC** Copy API Gateway Prod for Build API Gateway Staging
 ```bash
 terraform apply -var-file="terraform.tfvars"
 ```
+
+| Modules      | status   |
+|--------------|----------|
+| API_gatetway | pass     |
+| ECR          | pass     |
+| ECS          | pass     |
+| service      | pass     |
+| pipeline     | Not pass |
+| codebuile    | Not pass |
