@@ -1,5 +1,3 @@
-
-
 resource "aws_ecs_service" "ecs_service" {
   for_each = toset(var.family)
   name = each.value
