@@ -14,7 +14,7 @@ provider "aws" {
   secret_key = var.provider_aws.secret_key
 }
 
-module "ss" {
+module "role" {
   source = "../../modules/Policies"
   role = var.name_role
   policy = var.policy_name

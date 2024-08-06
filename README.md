@@ -9,13 +9,15 @@ This is **IaC** Copy API Gateway Prod for Build API Gateway Staging
 │   ├───api_geteway
 │   ├───ECR
 │   ├───ECS_Service
-│   └───Pipeline
+│   └───IAM
 └───modules
     ├───api_geteway
+    ├───CodeBuile
     ├───ECR
     ├───ECS
     │   └───service
-    └───Pipeline
+    ├───Pipe
+    └───Policies
 ```
 
 - **certificate look in tap VPC links**
@@ -32,5 +34,6 @@ terraform apply -var-file="terraform.tfvars"
 | ECR          | pass     |
 | ECS          | pass     |
 | service      | pass     |
+| Policies     | pass     |
 | pipeline     | Not pass |
 | codebuile    | Not pass |

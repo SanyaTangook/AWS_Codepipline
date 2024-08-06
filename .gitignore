@@ -4,8 +4,7 @@
 *.tfstate
 *.tfstate.*
 .terraform.lock.hcl
-**/codebuile/*
-**/pipeline/*
+
 # Crash log files
 crash.log
 crash.*.log
