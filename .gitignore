@@ -3,7 +3,7 @@
 # .tfstate files
 *.tfstate
 *.tfstate.*
-
+.terraform.lock.hcl
 **/codebuile/*
 **/pipeline/*
 # Crash log files
