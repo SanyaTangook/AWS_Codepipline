@@ -40,4 +40,4 @@ terraform apply -var-file="terraform.tfvars"
 | service      | pass     |
 | Policies     | pass     |
 | pipeline     | Not pass |
-| codebuile    | Not pass |
+| codebuile    | pass     |
