@@ -1,8 +1,5 @@
 # Plan Next Day
- Modules pipe
- CND
- api gateway
- Edit Modulesca
+ Modules pipe,CND,api gateway,Edit Modulesca
  
 
 # Terraform Config AWS API Gateway
