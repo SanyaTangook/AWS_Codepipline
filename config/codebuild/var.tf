@@ -1,3 +1,11 @@
+variable "provider_aws" {
+  type = object({
+    region     = string
+    access_key = string
+    secret_key = string
+  })
+}
+
 variable "codebuile" {
   type = map(object({
     environment = object({
@@ -12,10 +20,7 @@ variable "codebuile" {
 variable "s3" {
   type = string
 }
+
 variable "GitLab" {
   type = string
-}
-
-data "aws_codestarconnections_connection" "GitLab" {
-  name = var.GitLab
 }

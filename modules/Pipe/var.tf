@@ -1,11 +1,3 @@
-variable "provider_aws" {
-  type = object({
-    region     = string
-    access_key = string
-    secret_key = string
-  })
-}
-
 variable "S3" {
   type = string
 }
@@ -45,5 +37,5 @@ data "aws_codestarconnections_connection" "GitLab" {
 }
 
 data "aws_iam_role" "role_pipeline" {
-  name = "AWSCodePipelineServiceRole"
+  name = "AWSCodePipelineServiceRole-"
 }
