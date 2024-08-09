@@ -21,20 +21,3 @@ module "codebuild" {
   GitLab = var.GitLab
   s3 = var.s3
 }
-
-# module "pipeline" {
-#   source = "../../modules/Pipe"
-#   S3 = "codepipeline-ap-southeast-1-537388811766"
-#   Name-pipeline = "Test"
-#   Repository = {
-#     RepositoryName = "360truck/tst.cdp"
-#     BranchName = "feature/add_poc_staging"
-#   }
-#   CodeBuild = "Test"
-#   Deploy = {
-#     Cluster = "ECS-SG-nonProd-Back-End"
-#     Service = "sg-tst_cdp"
-#   }
-#   GitLab = "GitLab-360Truck"
-# }
-

@@ -1,3 +1,11 @@
+variable "provider_aws" {
+  type = object({
+    region     = string
+    access_key = string
+    secret_key = string
+  })
+}
+
 variable "S3" {
   type = string
 }
@@ -17,12 +25,4 @@ variable "pipeline" {
 }
 variable "GitLab" {
   type = string
-}
-
-data "aws_s3_bucket" "codepipeline" {
-  bucket = var.S3
-}
-
-data "aws_codestarconnections_connection" "GitLab" {
-  name = var.GitLab
 }

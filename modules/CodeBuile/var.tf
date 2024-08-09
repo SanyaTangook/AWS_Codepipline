@@ -16,6 +16,11 @@ variable "GitLab" {
   type = string
 }
 
+data "aws_s3_bucket" "codepipeline" {
+  bucket = var.s3
+}
+
+
 data "aws_codestarconnections_connection" "GitLab" {
   name = var.GitLab
 }

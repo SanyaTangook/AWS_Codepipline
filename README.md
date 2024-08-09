@@ -9,19 +9,15 @@ This is **IaC** Copy API Gateway Prod for Build API Gateway Staging
 ## Structures File
 
 ```bash
-├───config
-│   ├───api_geteway
-│   ├───ECR
-│   ├───ECS_Service
-│   └───IAM
-└───modules
-    ├───api_geteway
-    ├───CodeBuile
-    ├───ECR
-    ├───ECS
-    │   └───service
-    ├───Pipe
-    └───Policies
+MODULES
+├───api_geteway
+├───CodeBuile
+│   └───role_policy
+├───ECR
+├───ECS
+│   └───service
+└───Pipe
+    └───role_policy
 ```
 
 - **certificate look in tap VPC links**

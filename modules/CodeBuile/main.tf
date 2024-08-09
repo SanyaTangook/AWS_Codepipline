@@ -47,7 +47,6 @@ resource "aws_cloudwatch_log_group" "log_codebuild" {
   log_group_class = "STANDARD"
 }
 
-
 #  IAM Role CodeBuile
 resource "aws_iam_role" "role" {
   for_each           = var.codebuile
@@ -76,7 +75,7 @@ resource "aws_iam_policy" "policy" {
       {
         "Effect" = "Allow",
         "Resource" = [
-          "${var.s3}"
+          "${data.aws_s3_bucket.codepipeline.arn }"
         ],
         "Action" = [
           "s3:PutObject",
