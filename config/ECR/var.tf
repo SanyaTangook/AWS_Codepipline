@@ -10,13 +10,26 @@ variable "role_ecs" {
   default = ""
 }
 
-variable "url_ecr" {
-  type = string
-}
 
-variable "ECS" {
-  type = map(list(string))
+variable "container" {
+  type = map(object({
+    image = string
+    cpu = number
+    essential = bool
+    environment = list(map(string))
+    secrets = list(map(string))
+  }))
   default = {
-    "cluster" = [ "task" ]
-  }  
+    "ecr_name" = {
+      image = ""
+      cpu = 0 
+      essential = false
+      environment = [{
+        "key" = "value"
+      }]
+      secrets = [{
+        "key" = "value"
+      }]
+    }
+  }
 }

@@ -1,6 +1,9 @@
 # Plan Next Day
- Modules pipe,CND,api gateway,Edit Modulesca
- 
+ CND,api gateway
+
+# NOTE
+ ECS Clusters สร้างมือ
+ VPC สร้างมือ
 
 # Terraform Config AWS API Gateway
 
@@ -30,10 +33,10 @@ terraform apply -var-file="terraform.tfvars"
 
 | Modules      | status   |
 |--------------|----------|
-| API_gatetway | pass     |
+| API_gatetway | Not pass |
 | ECR          | pass     |
 | ECS          | pass     |
 | service      | pass     |
 | Policies     | pass     |
-| pipeline     | Not pass |
+| pipeline     | pass     |
 | codebuile    | pass     |
