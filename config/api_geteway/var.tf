@@ -1,20 +1,10 @@
 # API gateway variable 
-variable "name_certificate" {
-  type = string
-}
-
-variable "provider" {
+variable "provider_aws" {
   type = object({
-    provider = string
+    region     = string
     access_key = string
     secret_key = string
   })
-
-  default = {
-    provider = "ap-southeast-1"
-    access_key = ""
-    secret_key = ""
-  }
 }
 
 variable "data_api" {
@@ -22,4 +12,8 @@ variable "data_api" {
     Id_original = string
     domain_name = string 
   }))
+}
+
+variable "name_certificate" {
+  type = string
 }

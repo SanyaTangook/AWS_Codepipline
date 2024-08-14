@@ -2,7 +2,6 @@ data "aws_apigatewayv2_api" "data_api" {
   api_id = var.api_id
 }
 
-
 data "aws_acm_certificate" "issued" {
   domain   = var.name_certificate
   statuses = ["ISSUED"]
@@ -25,22 +24,20 @@ resource "aws_apigatewayv2_api" "creat_api" {
 }
 
 resource "aws_apigatewayv2_route" "api_route" {
-  depends_on = [ aws_apigatewayv2_api.creat_api ]
-  api_id    = aws_apigatewayv2_api.creat_api.id
-  route_key = "ANY /{proxy+}"
+  depends_on = [aws_apigatewayv2_api.creat_api]
+  api_id     = aws_apigatewayv2_api.creat_api.id
+  route_key  = "ANY /{proxy+}"
 }
 
-
 resource "aws_apigatewayv2_stage" "api_gateway" {
-  depends_on = [ aws_apigatewayv2_route.api_route ]
-  api_id = aws_apigatewayv2_api.creat_api.id
-  name   = "$default"
+  depends_on  = [aws_apigatewayv2_route.api_route]
+  api_id      = aws_apigatewayv2_api.creat_api.id
+  name        = "$default"
   auto_deploy = true
 }
 
-
 resource "aws_apigatewayv2_domain_name" "creat_domain" {
-  depends_on = [ aws_apigatewayv2_api.creat_api ]
+  depends_on  = [aws_apigatewayv2_api.creat_api]
   domain_name = var.domain_name
 
   domain_name_configuration {
