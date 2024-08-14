@@ -1,5 +1,6 @@
 # Local .terraform directories
 **/.terraform/*
+/config/cloudfront/*
 # .tfstate files
 *.tfstate
 *.tfstate.*

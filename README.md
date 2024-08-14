@@ -1,13 +1,12 @@
 # Plan Next Day
- CND,api gateway
+ CND,api gateway,ALB,
 
 # NOTE
  ECS Clusters สร้างมือ
+ ECS Service สร้างมือ
  VPC สร้างมือ
 
-# Terraform Config AWS API Gateway
-
-This is **IaC** Copy API Gateway Prod for Build API Gateway Staging
+# Terraform Config Pipeline and ECS
 
 ## Structures File
 
@@ -18,7 +17,7 @@ MODULES
 │   └───role_policy
 ├───ECR
 ├───ECS
-│   └───service
+│   └───role_policy
 └───Pipe
     └───role_policy
 ```
@@ -28,15 +27,15 @@ MODULES
 ## **Go to build** 🛠️🤯
 
 ```bash
-terraform apply -var-file="terraform.tfvars"
+terraform apply --var-file="terraform.tfvars"
 ```
 
 | Modules      | status   |
 |--------------|----------|
+| CloudFront   | Not pass |
 | API_gatetway | Not pass |
+| ALB          | Not pass |
 | ECR          | pass     |
 | ECS          | pass     |
-| service      | pass     |
-| Policies     | pass     |
 | pipeline     | pass     |
 | codebuile    | pass     |
