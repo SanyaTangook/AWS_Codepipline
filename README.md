@@ -32,7 +32,6 @@ terraform apply --var-file="terraform.tfvars"
 
 | Modules      | status   |
 |--------------|----------|
-| CloudFront   | Not pass |
 | API_gatetway | Not pass |
 | ALB          | Not pass |
 | ECR          | pass     |
