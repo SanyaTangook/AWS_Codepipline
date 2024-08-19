@@ -1,6 +1,3 @@
-# Plan Next Day
- CND,api gateway,ALB,
-
 # NOTE
  ECS Clusters สร้างมือ
  ECS Service สร้างมือ
