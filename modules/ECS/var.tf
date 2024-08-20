@@ -31,7 +31,7 @@ locals {
       environmentFiles = []
       ulimits = []
       essential = true
-      environment = var.container.environment 
+      environment = var.container.environment  
       mountPoints = []
       volumesFrom = []
       secrets = var.container.secrets 

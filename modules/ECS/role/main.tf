@@ -14,7 +14,7 @@ data "aws_iam_policy" "policy" {
 }
 
 resource "aws_iam_role" "ecs_role" {
-  name = "ecs_task_definition"
+  name = "ecsTaskExecutionRole-prd"
   assume_role_policy = jsonencode({
     Version = "2008-10-17"
     Statement = [

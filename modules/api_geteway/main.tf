@@ -7,6 +7,8 @@ data "aws_acm_certificate" "issued" {
   statuses = ["ISSUED"]
 }
 
+
+#  ดึงของ Data เก่ามาสร้าง
 resource "aws_apigatewayv2_api" "creat_api" {
   name                         = var.name_api
   protocol_type                = "HTTP"
