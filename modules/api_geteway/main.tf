@@ -1,3 +1,4 @@
+#  ดึงของ Data เก่ามาสร้าง
 data "aws_apigatewayv2_api" "data_api" {
   api_id = var.api_id
 }
@@ -7,8 +8,6 @@ data "aws_acm_certificate" "issued" {
   statuses = ["ISSUED"]
 }
 
-
-#  ดึงของ Data เก่ามาสร้าง
 resource "aws_apigatewayv2_api" "creat_api" {
   name                         = var.name_api
   protocol_type                = "HTTP"

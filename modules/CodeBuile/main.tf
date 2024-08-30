@@ -1,5 +1,5 @@
 resource "aws_codebuild_project" "codebuild" {
-  depends_on = [ aws_iam_role.role ]
+  depends_on    = [aws_iam_role.role]
   for_each      = var.codebuile
   name          = each.key
   build_timeout = 15
@@ -8,13 +8,13 @@ resource "aws_codebuild_project" "codebuild" {
     type = "CODEPIPELINE"
   }
   environment {
-    type = each.value["environment"]["type"]
+    type         = each.value["environment"]["type"]
     compute_type = each.value["environment"]["compute_type"]
-    image = each.value["environment"]["image"]
+    image        = each.value["environment"]["image"]
     dynamic "environment_variable" {
       for_each = each.value["environment"]["environment_variable"]
       content {
-        name = environment_variable.key
+        name  = environment_variable.key
         value = environment_variable.value
       }
     }
@@ -31,18 +31,18 @@ resource "aws_codebuild_project" "codebuild" {
 }
 
 resource "aws_codebuild_report_group" "report_group" {
-  depends_on = [ aws_iam_role.role ]
-  for_each = var.codebuile
-  name = "${each.key}-LCOVINFO-AutoDiscovered"
-  type = "CODE_COVERAGE"
+  depends_on = [aws_iam_role.role]
+  for_each   = var.codebuile
+  name       = "${each.key}-LCOVINFO-AutoDiscovered"
+  type       = "CODE_COVERAGE"
   export_config {
     type = "NO_EXPORT"
   }
 }
 
 resource "aws_cloudwatch_log_group" "log_codebuild" {
-  depends_on = [ aws_iam_role.role ]
-  for_each = var.codebuile
+  depends_on      = [aws_iam_role.role]
+  for_each        = var.codebuile
   name            = "/aws/codebuild/${each.key}"
   log_group_class = "STANDARD"
 }
@@ -56,7 +56,7 @@ resource "aws_iam_role" "role" {
 
 resource "aws_iam_policy" "policy" {
   for_each = var.codebuile
-  name = "CodeBuildBasePolicy-${each.key}"
+  name     = "CodeBuildBasePolicy-${each.key}"
   policy = jsonencode({
     "Version" = "2012-10-17"
     "Statement" = [
@@ -75,7 +75,7 @@ resource "aws_iam_policy" "policy" {
       {
         "Effect" = "Allow",
         "Resource" = [
-          "${data.aws_s3_bucket.codepipeline.arn }"
+          "arn:aws:s3:::codepipeline-ap-southeast-1-*"
         ],
         "Action" = [
           "s3:PutObject",
@@ -123,13 +123,20 @@ resource "aws_iam_role_policy_attachment" "EC2Full" {
 }
 
 resource "aws_iam_role_policy_attachment" "codebuild" {
-  for_each = var.codebuile
+  for_each   = var.codebuile
   role       = aws_iam_role.role[each.key].name
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess"
 }
 
+resource "aws_iam_role_policy_attachment" "fullclone" {
+  for_each   = var.codebuile
+  role       = aws_iam_role.role[each.key].name
+  policy_arn = aws_iam_policy.fullclone.arn
+}
+
+
 resource "aws_iam_role_policy_attachment" "AWSCodePipelineServiceRole" {
-  for_each = var.codebuile
+  for_each   = var.codebuile
   role       = aws_iam_role.role[each.key].name
   policy_arn = aws_iam_policy.policy[each.key].arn
 }
